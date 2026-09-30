@@ -1,0 +1,40 @@
+<!-- Aquí voy a hacer la calculadora -->
+
+<!-- Continuar a partir de aquí -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora</title><meta charset="utf-8">
+
+<script type="text/javascript">
+function vaciar () {
+  document.getElementById("n1").value = "";
+}
+
+function cuadrado() {
+  let num = document.getElementById("n1");
+  num.value = num.value * num.value;
+}
+
+function inverso() {
+  let num = document.getElementById("n1");
+  num.value = 1/num.value;
+}
+</script>
+</head>
+
+
+<body>
+
+  <!-- 1. CAMPO DE INFORMACIÓN -->
+  <h2 id="info" class="big" title="Información sobre el número">
+  </h2>
+
+
+  Número:
+  <input type="text" id="n1" onclick="vaciar()">
+  <br><br>
+  <button onclick="cuadrado()">x<sup>2</sup></button>
+  <button onclick="inverso()"> 1/x </button>  
+</body>
+</html>
