@@ -1,40 +1,204 @@
-<!-- Aquí voy a hacer la calculadora -->
-
-<!-- Continuar a partir de aquí -->
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Calculadora</title><meta charset="utf-8">
+  <title>Calculadora</title><meta charset="utf-8"> <!-- Es un estilo que supongo que podremos cambiar -->
 
+<!-- Lógica de la calculadora -->
 <script type="text/javascript">
 function vaciar () {
   document.getElementById("n1").value = "";
 }
 
-function cuadrado() {
-  let num = document.getElementById("n1");
-  num.value = num.value * num.value;
+<!-- Campo de información -->
+function fill_info() {
+  let num = document.getElementById("n1").value;
+  let info = document.getElementById("info");
+  if (num < 100) {
+    info.innerHTML = "Info: El resultado es menor que 100";
+  } else if (num <= 200) {
+    info.innerHTML = "Info: El resultado está entre 100 y 200";
+  } else {
+    info.innerHTML = "Info: El resultado es mayor que 200";
+  }
 }
 
+<!-- Operaciones base -->
+function square() { <!-- He cambiado el nombre de cuadrado a square por si hay confusión con el enunciado -->
+  if (validate()) { <!-- Validamos la entrada -->
+    let num = document.getElementById("n1");
+    num.value = num.value * num.value;
+    fill_info(); <!-- Añadimos la llamada a fill_info -->
+  }
+}
+<!-- En el enunciado no la menciona pero está -->
 function inverso() {
-  let num = document.getElementById("n1");
-  num.value = 1/num.value;
+  if (validate()) { <!-- Validamos la entrada -->
+    let num = document.getElementById("n1");
+    num.value = 1 / num.value;
+    fill_info(); <!-- Añadimos la llamada a fill_info -->
+  }
+}
+
+<!-- Operaciones unarias -->
+function mod() {
+  if (validate()) { <!-- Validamos la entrada -->
+    let num = document.getElementById("n1");
+    if (num.value < 0) {
+      num.value = -num.value;
+    }
+    fill_info(); <!-- Añadimos la llamada a fill_info -->
+  }
+}
+
+function fact() {
+  if (validate()) { <!-- Validamos la entrada -->
+    let num = document.getElementById("n1");
+    let x = num.value;
+    let resultado = 1;
+    while (x > 1) {
+      resultado = resultado * x;
+      x--;
+    };
+    num.value = resultado;
+    fill_info(); <!-- Añadimos la llamada a fill_info -->
+  }
+}
+
+<!-- Operaciones binarias -->
+
+<!-- Variables globales para almacenar el primer número y el operador -->
+let primerNumero;
+let operador;
+
+<!-- Función que almacena número y operador -->
+function almacenarNumYOp(op) {
+  if (validate()) { <!-- Validamos la entrada -->
+    primerNumero = document.getElementById("n1").value;
+    operador = op;
+    document.getElementById("n1").value = "";
+  }
+}
+<!-- Función para calcular el resultado -->
+function eq() {
+  if (validate()) {
+    let segundoNumero = document.getElementById("n1").value;
+    let resultado;
+    if (operador == "+") {
+      resultado = +primerNumero + +segundoNumero;
+    } else if (operador == "*") {
+      resultado = primerNumero * segundoNumero;
+    }
+    document.getElementById("n1").value = resultado;
+    fill_info();
+  }
+}
+
+<!-- Operaciones con CSV (Valores separados por comas)-->
+
+<!-- Suma todos los valores de la lista-->
+function sum() {
+  if (validate()) { <!-- Validamos la entrada -->
+    let input = document.getElementById("n1").value;
+    let arr = input.split(",");
+    let i = 0;
+    let resultado = 0;
+    while (i < arr.length) {
+      resultado += Number(arr[i]);
+      i++;
+    };
+    document.getElementById("n1").value = resultado;
+    fill_info();<!-- Añadimos la llamada a fill_info -->
+  }
+}
+
+<!-- Ordena los valores en orden ascendente -->
+function sort() {
+  if (validate()) { <!-- Validamos la entrada -->
+    let input = document.getElementById("n1").value;
+    let arr = input.split(",");
+    arr.sort(function(a, b) {
+      return Number(a) - Number(b);
+    });
+  document.getElementById("n1").value = arr.join(",");
+}
+}
+
+<!-- Invierte el orden de la lista -->
+function reverse() {
+  if (validate()) { <!-- Validamos la entrada -->
+    let input = document.getElementById("n1").value;
+    let arr = input.split(",");
+    arr.reverse();
+    document.getElementById("n1").value = arr.join(",");
+  }
+}
+
+<!-- Elimina el último valor de la lista -->
+function removelast() {
+  if (validate()) { <!-- Validamos la entrada -->
+    let input = document.getElementById("n1").value;
+    let arr = input.split(",");
+    arr.pop();
+    document.getElementById("n1").value = arr.join(",");
+  }
+}
+
+<!-- Gestión de errores -->
+function validate() {
+  let input = document.getElementById("n1").value;
+  let arr = input.split(",");
+  let i = 0;
+  try {
+    while (i < arr.length) {
+      if (Number(arr[i]) || arr[i] == "0") {
+        i++;
+      } else {
+        throw("No se ha detectado un número");
+      }
+    }
+    return true;
+  } catch (error) {
+    document.getElementById("info").innerHTML = error;
+    return false;
+  }
 }
 </script>
 </head>
 
 
 <body>
-
-  <!-- 1. CAMPO DE INFORMACIÓN -->
-  <h2 id="info" class="big" title="Información sobre el número">
-  </h2>
-
+<h2 id="info" class="big" title="Información sobre el número">
+  Información sobre el número <!-- Contenido inicial -->
+</h2>
 
   Número:
   <input type="text" id="n1" onclick="vaciar()">
   <br><br>
-  <button onclick="cuadrado()">x<sup>2</sup></button>
-  <button onclick="inverso()"> 1/x </button>  
+  <!-- Operaciones base -->
+  <button onclick="square()">x<sup>2</sup></button>
+  <button onclick="inverso()"> 1/x </button>  <!-- No lo menciona el enunciado, lo dejo para el final por si acaso -->
+
+  <!-- Operaciones unarias -->
+  <button onclick="mod()"> modulo </button>
+  <button onclick="fact()"> factorial </button>
+
+  <!-- Operaciones binarias -->
+  <button onclick="almacenarNumYOp('+')"> + </button>
+  <button onclick="almacenarNumYOp('*')"> * </button>
+  <button onclick="eq()"> = </button>
+
+  <!-- Operaciones con CSV (Valores separados por comas)-->
+  <button onclick="sum()"> Suma </button>
+  <button onclick="sort()"> Ordenar </button>
+  <button onclick="reverse()"> Invertir </button>
+  <button onclick="removelast()"> Eliminar último </button>
 </body>
 </html>
+
+<!-- CHEQUEAR ESTO ANTES DE ENTREGAR:
+ONCLICK no
+Si creamos un objeto metemos todo lo que vamos a usar ya, no añadirlo luego y ponemos un valor que no sea creíble para entenderlo.
+persona = {
+     edad: -1
+}
+-->
