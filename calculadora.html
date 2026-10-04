@@ -1,7 +1,9 @@
+<!-- Página de la calculadora -->
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Calculadora</title><meta charset="utf-8"> <!-- Es un estilo que supongo que podremos cambiar -->
+  <title> Calculadora - Rafael González Lozano </title> <!-- Título de la página -->
+  <link href="css/estilos.css" rel="stylesheet" type="text/css" > <!-- Hacemos el enlace a nuestro archivo de estilos -->
 
 <!-- Lógica de la calculadora -->
 <script type="text/javascript">
@@ -40,7 +42,9 @@ function inverso() {
 }
 
 <!-- Operaciones unarias -->
-function mod() {
+
+<!-- Operación de valor absoluto -->
+let mod = () => {
   if (validate()) { <!-- Validamos la entrada -->
     let num = document.getElementById("n1");
     if (num.value < 0) {
@@ -48,9 +52,10 @@ function mod() {
     }
     fill_info(); <!-- Añadimos la llamada a fill_info -->
   }
-}
+};
 
-function fact() {
+<!-- Operación de factorial-->
+let fact = () => {
   if (validate()) { <!-- Validamos la entrada -->
     let num = document.getElementById("n1");
     let x = num.value;
@@ -62,7 +67,16 @@ function fact() {
     num.value = resultado;
     fill_info(); <!-- Añadimos la llamada a fill_info -->
   }
-}
+};
+
+<!-- EXTRA: Elevación al cubo (No lo menciona en el enunciado pero lo menciona en la rúbrica) -->
+let cubo = () => {
+  if (validate()) { <!-- Validamos la entrada -->
+    let num = document.getElementById("n1");
+    num.value = num.value * num.value * num.value;
+    fill_info(); <!-- Añadimos la llamada a fill_info -->
+  }
+};
 
 <!-- Operaciones binarias -->
 
@@ -75,9 +89,13 @@ function almacenarNumYOp(op) {
   if (validate()) { <!-- Validamos la entrada -->
     primerNumero = document.getElementById("n1").value;
     operador = op;
+    <!-- EXTRA: Mostramos la operación que se va a realizar, para saber qué operación se está realizando. Me parece que mejora el UX -->
+    document.getElementById("info").innerHTML = 
+      "Operación: " + primerNumero + " " + operador;
     document.getElementById("n1").value = "";
   }
 }
+
 <!-- Función para calcular el resultado -->
 function eq() {
   if (validate()) {
@@ -107,10 +125,11 @@ function sum() {
       i++;
     };
     document.getElementById("n1").value = resultado;
-    fill_info();<!-- Añadimos la llamada a fill_info -->
+    fill_info(); <!-- Añadimos la llamada a fill_info -->
   }
 }
 
+<!-- Podría añadir el tema de CAMPO INFORMACIÓN a esta parte de alguna manera -->
 <!-- Ordena los valores en orden ascendente -->
 function sort() {
   if (validate()) { <!-- Validamos la entrada -->
@@ -143,7 +162,25 @@ function removelast() {
   }
 }
 
+<!-- EXTRA: Cálculo de la media (Aparece mencionado en la rúbrica)-->
+function media() {
+  if (validate()) { <!-- Validamos la entrada -->
+    let input = document.getElementById("n1").value;
+    let arr = input.split(",");
+    let i = 0;
+    let resultado = 0;
+    while (i < arr.length) {
+      resultado += Number(arr[i]);
+      i++;
+    };
+    resultado = resultado / arr.length;
+    document.getElementById("n1").value = resultado;
+    fill_info(); <!-- Añadimos la llamada a fill_info -->
+  }
+}
+
 <!-- Gestión de errores -->
+<!-- Nota:Deben mostrarse mensajes apropiados según el tipo de error. CUALES SON ESOS TIPOS DE ERRORES? -->
 function validate() {
   let input = document.getElementById("n1").value;
   let arr = input.split(",");
@@ -166,39 +203,102 @@ function validate() {
 </head>
 
 
+<!-- Nota: Extras-->
+<!-- Cambiar lo de onclick porque en clase hemos hablado de ES5, ES6, etc. -->
+<!-- Cuando se active la función vaciar que vuelva a la Información sobre el número -->
 <body>
-<h2 id="info" class="big" title="Información sobre el número">
-  Información sobre el número <!-- Contenido inicial -->
-</h2>
 
-  Número:
-  <input type="text" id="n1" onclick="vaciar()">
-  <br><br>
-  <!-- Operaciones base -->
-  <button onclick="square()">x<sup>2</sup></button>
-  <button onclick="inverso()"> 1/x </button>  <!-- No lo menciona el enunciado, lo dejo para el final por si acaso -->
+<!-- Menú de navegación -->  
+<nav> 
+<!-- Logo (para volver a la página de Inicio) -->
+<a href="index.html" class="logo">
+  <img src="imagenes/logo.png" alt="Logo Calculadora">
+</a>
 
-  <!-- Operaciones unarias -->
-  <button onclick="mod()"> modulo </button>
-  <button onclick="fact()"> factorial </button>
+<!-- Enlaces a las páginas -->
+<div class="menu">
+  <a href="index.html">Inicio</a>
+  <a href="calculadora.html">Calculadora</a>
+  <a href="contacto.html">Contacto</a>
+</div>
+</nav>
 
-  <!-- Operaciones binarias -->
-  <button onclick="almacenarNumYOp('+')"> + </button>
-  <button onclick="almacenarNumYOp('*')"> * </button>
-  <button onclick="eq()"> = </button>
+<!-- Cabecera -->
+<header class="calculadora">
+<!-- Nombre de la página -->
+  <h1>
+   Calculadora
+  </h1>
+<!-- Subtítulo de la página -->
+  <h2>
+    Comienza a usar nuestra maravillosa calculadora
+  </h2>
+</header>
 
-  <!-- Operaciones con CSV (Valores separados por comas)-->
-  <button onclick="sum()"> Suma </button>
-  <button onclick="sort()"> Ordenar </button>
-  <button onclick="reverse()"> Invertir </button>
-  <button onclick="removelast()"> Eliminar último </button>
+<!-- Contenido principal de la calculadora -->
+<main class="calculadora-contenido">
+
+<!-- Campo de información -->
+  <section class="bloque-calculadora">
+    <h2 id="info" class="big" title="Información sobre el número">
+      Información sobre el número
+    </h2>
+    
+    <div class="entrada-calculadora">
+      Número:
+      <input type="text" id="n1" onclick="vaciar()">
+    </div>
+
+  </section>
+
+<!-- Operaciones base -->
+  <section class="bloque-calculadora">
+    <h2>Operaciones base:</h2>
+    <div class="botones-calculadora">
+      <button onclick="square()">x<sup>2</sup></button>
+      <button onclick="inverso()">1/x</button>
+    </div>
+  </section>
+
+<!-- Operaciones unarias -->
+  <section class="bloque-calculadora">
+    <h2>Operaciones unarias:</h2>
+    <div class="botones-calculadora">
+      <button onclick="mod()">Módulo</button>
+      <button onclick="fact()">Factorial</button>
+      <button onclick="cubo()">x<sup>3</sup></button>
+    </div>
+  </section>
+
+<!-- Operaciones binarias -->
+  <section class="bloque-calculadora">
+    <h2>Operaciones binarias:</h2>
+    <div class="botones-calculadora">
+        <button onclick="almacenarNumYOp('+')">+</button>
+        <button onclick="almacenarNumYOp('*')">*</button>
+        <button onclick="eq()">=</button>
+    </div>
+  </section>
+
+<!-- Operaciones con CSV -->
+  <section class="bloque-calculadora">
+    <h2>Operaciones con CSV:</h2>
+    <div class="botones-calculadora">
+        <button onclick="sum()">Suma</button>
+        <button onclick="sort()">Ordenar</button>
+        <button onclick="reverse()">Invertir</button>
+        <button onclick="removelast()">Eliminar último</button>
+        <button onclick="media()">Media</button>
+    </div>
+  </section>
+</main>
 </body>
-</html>
 
-<!-- CHEQUEAR ESTO ANTES DE ENTREGAR:
-ONCLICK no
-Si creamos un objeto metemos todo lo que vamos a usar ya, no añadirlo luego y ponemos un valor que no sea creíble para entenderlo.
-persona = {
-     edad: -1
-}
--->
+<!-- Pie de página --> 
+<footer>
+<!-- Aviso de copyright -->            
+<p class="copyright">
+  © 2026 Rafael González Lozano
+</p>
+</footer>
+</html>

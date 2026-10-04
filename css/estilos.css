@@ -1,0 +1,387 @@
+/* Estilos generales*/
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #2B2A2A;
+    color: white;
+}
+
+
+/* Menú de navegación */
+nav {
+    background-color: black;
+    padding: 25px 9%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    margin: 0;
+}
+
+nav .logo img {
+    width: 40px;
+    height: auto;
+    display: block;2
+}
+
+nav .menu {
+    display: flex;
+    align-items: center;
+}
+
+nav .menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin-left: 45px;
+}
+
+
+/* Cabecera */
+header {
+    background-image: url("../imagenes/fondo.png");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 70px 10%;
+}
+
+.calculadora {
+    background-image: url("../imagenes/fondo2.png");
+}
+
+.contacto {
+    background-image: url("../imagenes/fondo3.png");
+}
+
+
+header h1 {
+    font-size: 65px;
+    margin: 0;
+}
+
+
+/* Pie de página */
+footer {
+    background-color: black;
+    color: white;
+    padding: 60px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer .redes img {
+    width: 100px;
+    height: auto;
+    display: block;
+}
+
+footer .redes {
+    display: flex;
+    align-items: center;
+}
+
+/* Me gustaría ponerlo en el centro del footer, pero no sé cómo hacerlo. */
+footer .copyright {
+    font-size: 15px;
+}
+
+
+/* Inicio*/
+main {
+    width: 80%;
+    margin: auto;
+}
+
+.inicio-presentación {
+    text-align: center;
+    padding: 80px 0;
+    border-bottom: none;
+}
+
+.inicio-presentación .presentacion {
+    color: #76CAA5;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 25px 0;
+}
+
+.inicio-presentación h2 {
+    color: white;
+    font-size: 55px;
+    margin: 0;
+}
+
+.inicio-presentación .descripcion {
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+.botones {
+    margin-top: 40px;
+}
+
+.botones a {
+    display: inline-block;
+    background-color: #76CAA5;
+    color: black;
+    text-decoration: none;
+    padding: 18px 30px;
+    margin: 10px;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+
+/* Acerca de mí */
+.presentacion-acerca {
+    padding: 60px 0;
+}
+
+.presentacion-acerca h2 {
+    color: white;
+    font-size: 42px;
+    margin: 0 0 40px 0;
+}
+
+/* Acerca de mi - Contenido */
+.contenido-presentacion-acerca {
+    display: flex;
+    align-items: center;
+    gap: 45px;
+}
+
+/* Acerca de mi - Foto */
+.foto-acerca {
+    width: 55%;
+    flex-shrink: 0;
+}
+
+.foto-acerca img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+}
+
+/* Acerca de mi - Texto */
+.datos-acerca {
+    width: 45%;
+}
+
+.datos-acerca ul {
+    margin: 0;
+    padding-left: 25px;
+}
+
+.datos-acerca li {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+.datos-acerca li::marker {
+    color: #76CAA5;
+}
+
+.frase-acerca {
+    width: 100%;
+    color: #b8b8b8;
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.6;
+    margin: 30px 0 0 0;
+}
+
+/* Acerca de mí - Comportamiento */
+@media (max-width: 800px) { /* Quiero que cuando reduzca la pestaña la imagen y el texto se coloque */
+    .contenido-presentacion-acerca {
+        display: block;
+    }
+
+    .foto-acerca { /* Foto en Grande arriba */
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .datos-acerca { /* Texto debajo */
+        width: 100%;
+    }
+
+    .presentacion-acerca h2 { /* Enunciado debajo */
+        font-size: 36px;
+    }
+}
+
+/* Portafolio - Contenido */
+.portafolio-contenido {
+    padding: 45px 0;
+}
+
+.bloque-portafolio {
+    padding: 35px 0;
+    border-bottom: 1px solid #555555;
+}
+
+.bloque-portafolio:last-child {
+    border-bottom: none;
+}
+
+.bloque-portafolio h2 {
+    color: #76CAA5;
+    font-size: 18px;
+    margin: 0 0 30px 0;
+}
+
+.paso-portafolio {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.paso-portafolio span {
+    background-color: #76CAA5;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    min-width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paso-portafolio h3 {
+    color: white;
+    font-size: 20px;
+    margin: 0 0 8px 0;
+}
+
+.paso-portafolio p,
+.introduccion-portafolio {
+    color: #b8b8b8;
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.introduccion-portafolio {
+    margin-bottom: 30px;
+}
+
+
+/* Portafolio - Comportamiento */
+@media (max-width: 800px) { /* Quiero que cuando reduzca la pestaña el texto se coloque */
+    .paso-portafolio {
+        gap: 15px;
+    }
+
+    .paso-portafolio h3 {
+        font-size: 18px;
+    }
+
+    .paso-portafolio p,
+    .introduccion-portafolio {
+        font-size: 16px;
+    }
+}
+
+
+/* Contacto - Contenido */
+.contacto-contenido {
+    padding: 70px 0;
+}
+
+.ayuda-contacto {
+    text-align: center;
+}
+
+.titulo-pequeno-contacto {
+    color: #76CAA5;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 30px 0;
+}
+
+.ayuda-contacto h2 {
+    color: white;
+    font-size: 50px;
+    margin: 0 0 60px 0;
+}
+
+
+/* Tarjetas */
+.tarjetas-contacto {
+    display: flex;
+    gap: 30px;
+    text-align: left;
+}
+
+.tarjeta-contacto {
+    width: 33.33%;
+    background-color: #353535;
+    border: 1px solid #555555;
+    border-radius: 20px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjeta-contacto h3 {
+    color: white;
+    font-size: 25px;
+    margin: 0 0 25px 0;
+}
+
+.tarjeta-contacto p {
+    color: #b8b8b8;
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0 0 35px 0;
+}
+
+.tarjeta-contacto a {
+    color: #76CAA5;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: auto;
+}
+
+
+/* Datos de contacto */
+.datos-contacto {
+    margin-top: 45px;
+    color: #b8b8b8;
+    font-size: 17px;
+}
+
+
+/* Contacto - Comportamiento */
+@media (max-width: 800px) { /* Quiero que cuando reduzca la pestaña las tarjetas se coloque */
+    .ayuda-contacto h2 {
+        font-size: 36px;
+    }
+
+    .tarjetas-contacto {
+        display: block;
+    }
+
+    .tarjeta-contacto {
+        width: auto;
+        margin-bottom: 25px;
+    }
+}
