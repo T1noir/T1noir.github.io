@@ -1,6 +1,7 @@
 - Enlace a la página web funcional y publicada: https://T1noir.github.io/
 
 - Breve descripción de las funcionalidades implementadas:
+
 El proyecto consiste en una aplicación web de calculadora desarrollada con HTML, CSS y JavaScript, acompañada de una página de inicio y una sección de contacto. La web cuenta con un diseño común y adaptable a distintos tamaños de pantalla mediante el uso de CSS.
 
 La calculadora incorpora operaciones básicas y avanzadas, como el cálculo del cuadrado, cubo, inverso, valor absoluto y factorial, además de operaciones binarias de suma y multiplicación. También permite trabajar con listas de valores separados por comas (CSV), pudiendo sumar sus elementos, ordenarlos, invertir su orden, eliminar el último valor y calcular la media.
