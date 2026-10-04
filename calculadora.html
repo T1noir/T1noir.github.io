@@ -8,7 +8,14 @@
 <!-- Lógica de la calculadora -->
 <script type="text/javascript">
 function vaciar () {
-  document.getElementById("n1").value = "";
+    let num = document.getElementById("n1");
+    
+    <!-- EXTRA: Cuando termine una operación volvemos a mostrar la información inicial -->
+    if (num.value != "") { <!-- Excepción para evitar errores con las operaciones binarias -->
+        num.value = "";
+        document.getElementById("info").innerHTML = "Información sobre el número";
+        document.getElementById("operacion-info").innerHTML = ""; <!-- Limpiamos la información de la operación -->
+    }
 }
 
 <!-- Campo de información -->
@@ -98,17 +105,22 @@ function almacenarNumYOp(op) {
 
 <!-- Función para calcular el resultado -->
 function eq() {
-  if (validate()) {
+  if (validate()) { <!-- Validamos la entrada -->
     let segundoNumero = document.getElementById("n1").value;
     let resultado;
+    <!-- Extra: Mostramos el resultado-->
     if (operador == "+") {
       resultado = +primerNumero + +segundoNumero;
+      document.getElementById("operacion-info").innerHTML =
+      "Operación: Suma. El resultado es " + resultado;
     } else if (operador == "*") {
       resultado = primerNumero * segundoNumero;
+      document.getElementById("operacion-info").innerHTML =
+      "Operación: Multiplicación. El resultado es " + resultado;
     }
-    document.getElementById("n1").value = resultado;
-    fill_info();
   }
+  document.getElementById("n1").value = resultado;
+  fill_info(); <!-- Añadimos la llamada a fill_info -->
 }
 
 <!-- Operaciones con CSV (Valores separados por comas)-->
@@ -125,46 +137,57 @@ function sum() {
       i++;
     };
     document.getElementById("n1").value = resultado;
+    document.getElementById("operacion-info").innerHTML =
+      "Lista de valores procesada: se han sumado los valores. El resultado es " + resultado; <!-- Extra: Mostramos el resultado -->
     fill_info(); <!-- Añadimos la llamada a fill_info -->
   }
 }
 
-<!-- Podría añadir el tema de CAMPO INFORMACIÓN a esta parte de alguna manera -->
+
 <!-- Ordena los valores en orden ascendente -->
 function sort() {
-  if (validate()) { <!-- Validamos la entrada -->
+  if (validate()) {
     let input = document.getElementById("n1").value;
     let arr = input.split(",");
     arr.sort(function(a, b) {
       return Number(a) - Number(b);
     });
-  document.getElementById("n1").value = arr.join(",");
+    document.getElementById("n1").value = arr.join(",");
+    document.getElementById("operacion-info").innerHTML =
+      "Lista de valores procesada: se han ordenado los valores. El resultado es " + arr.join(","); <!-- Extra: Mostramos el resultado -->
+  }
 }
-}
+
 
 <!-- Invierte el orden de la lista -->
 function reverse() {
-  if (validate()) { <!-- Validamos la entrada -->
+  if (validate()) {
     let input = document.getElementById("n1").value;
     let arr = input.split(",");
     arr.reverse();
     document.getElementById("n1").value = arr.join(",");
+    document.getElementById("operacion-info").innerHTML =
+      "Lista de valores procesada: se ha invertido el orden de los valores. El resultado es " + arr.join(","); <!-- Extra: Mostramos el resultado -->
   }
 }
 
+
 <!-- Elimina el último valor de la lista -->
 function removelast() {
-  if (validate()) { <!-- Validamos la entrada -->
+  if (validate()) {
     let input = document.getElementById("n1").value;
     let arr = input.split(",");
     arr.pop();
     document.getElementById("n1").value = arr.join(",");
+    document.getElementById("operacion-info").innerHTML =
+      "Lista de valores procesada: se ha eliminado el último valor. El resultado es " + arr.join(","); <!-- Extra: Mostramos el resultado -->
   }
 }
 
+
 <!-- EXTRA: Cálculo de la media (Aparece mencionado en la rúbrica)-->
 function media() {
-  if (validate()) { <!-- Validamos la entrada -->
+  if (validate()) {
     let input = document.getElementById("n1").value;
     let arr = input.split(",");
     let i = 0;
@@ -175,7 +198,9 @@ function media() {
     };
     resultado = resultado / arr.length;
     document.getElementById("n1").value = resultado;
-    fill_info(); <!-- Añadimos la llamada a fill_info -->
+    document.getElementById("operacion-info").innerHTML =
+      "Lista de valores procesada: se ha calculado la media. El resultado es " + resultado; <!-- Extra: Mostramos el resultado -->
+    fill_info();
   }
 }
 
@@ -190,7 +215,7 @@ function validate() {
       if (Number(arr[i]) || arr[i] == "0") {
         i++;
       } else {
-        throw("No se ha detectado un número");
+        throw("Error: No se ha detectado un número");
       }
     }
     return true;
@@ -202,10 +227,6 @@ function validate() {
 </script>
 </head>
 
-
-<!-- Nota: Extras-->
-<!-- Cambiar lo de onclick porque en clase hemos hablado de ES5, ES6, etc. -->
-<!-- Cuando se active la función vaciar que vuelva a la Información sobre el número -->
 <body>
 
 <!-- Menú de navegación -->  
@@ -240,15 +261,18 @@ function validate() {
 
 <!-- Campo de información -->
   <section class="bloque-calculadora">
+
     <h2 id="info" class="big" title="Información sobre el número">
-      Información sobre el número
+        Información sobre el número
     </h2>
-    
+
     <div class="entrada-calculadora">
-      Número:
-      <input type="text" id="n1" onclick="vaciar()">
+        Número:
+        <input type="text" id="n1" onclick="vaciar()">
     </div>
 
+    <!-- Información sobre la operación realizada -->
+    <p id="operacion-info"></p>
   </section>
 
 <!-- Operaciones base -->

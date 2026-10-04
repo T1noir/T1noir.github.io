@@ -70,26 +70,14 @@ footer {
     color: white;
     padding: 60px 10%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
 footer p {
-    margin: 0;
+    margin: 10px;
 }
 
-footer .redes img {
-    width: 100px;
-    height: auto;
-    display: block;
-}
-
-footer .redes {
-    display: flex;
-    align-items: center;
-}
-
-/* Me gustaría ponerlo en el centro del footer, pero no sé cómo hacerlo. */
 footer .copyright {
     font-size: 15px;
 }
@@ -143,164 +131,94 @@ main {
     border-radius: 20px;
 }
 
-
-/* Acerca de mí */
-.presentacion-acerca {
-    padding: 60px 0;
+/* Calculadora - contenido */
+.calculadora-contenido {
+    padding: 70px 0;
 }
 
-.presentacion-acerca h2 {
-    color: white;
-    font-size: 42px;
-    margin: 0 0 40px 0;
-}
 
-/* Acerca de mi - Contenido */
-.contenido-presentacion-acerca {
-    display: flex;
-    align-items: center;
-    gap: 45px;
-}
-
-/* Acerca de mi - Foto */
-.foto-acerca {
-    width: 55%;
-    flex-shrink: 0;
-}
-
-.foto-acerca img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 20px;
-}
-
-/* Acerca de mi - Texto */
-.datos-acerca {
-    width: 45%;
-}
-
-.datos-acerca ul {
-    margin: 0;
-    padding-left: 25px;
-}
-
-.datos-acerca li {
-    font-size: 18px;
-    line-height: 1.5;
-    margin-bottom: 18px;
-}
-
-.datos-acerca li::marker {
-    color: #76CAA5;
-}
-
-.frase-acerca {
-    width: 100%;
-    color: #b8b8b8;
-    font-size: 18px;
-    font-style: italic;
-    line-height: 1.6;
-    margin: 30px 0 0 0;
-}
-
-/* Acerca de mí - Comportamiento */
-@media (max-width: 800px) { /* Quiero que cuando reduzca la pestaña la imagen y el texto se coloque */
-    .contenido-presentacion-acerca {
-        display: block;
-    }
-
-    .foto-acerca { /* Foto en Grande arriba */
-        width: 100%;
-        margin-bottom: 40px;
-    }
-
-    .datos-acerca { /* Texto debajo */
-        width: 100%;
-    }
-
-    .presentacion-acerca h2 { /* Enunciado debajo */
-        font-size: 36px;
-    }
-}
-
-/* Portafolio - Contenido */
-.portafolio-contenido {
-    padding: 45px 0;
-}
-
-.bloque-portafolio {
+/* Bloques de la calculadora */
+.bloque-calculadora {
     padding: 35px 0;
     border-bottom: 1px solid #555555;
 }
 
-.bloque-portafolio:last-child {
-    border-bottom: none;
+.bloque-calculadora h2 {
+    color: white;
+    font-size: 25px;
+    margin: 0 0 25px 0;
 }
 
-.bloque-portafolio h2 {
+
+/* Campo de información */
+.bloque-calculadora .big {
     color: #76CAA5;
-    font-size: 18px;
-    margin: 0 0 30px 0;
-}
-
-.paso-portafolio {
-    display: flex;
-    align-items: flex-start;
-    gap: 25px;
+    font-size: 30px;
+    text-align: center;
     margin-bottom: 30px;
 }
 
-.paso-portafolio span {
-    background-color: #76CAA5;
-    color: black;
-    font-size: 18px;
-    font-weight: bold;
-    min-width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.paso-portafolio h3 {
+/* Entrada de la calculadora */
+.entrada-calculadora {
+    text-align: center;
     color: white;
     font-size: 20px;
-    margin: 0 0 8px 0;
+    font-weight: bold;
 }
 
-.paso-portafolio p,
-.introduccion-portafolio {
+.entrada-calculadora input {
+    background-color: #353535;
+    color: white;
+    border: 1px solid #555555;
+    border-radius: 15px;
+    padding: 15px 20px;
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+
+/* Botones de la calculadora */
+.botones-calculadora {
+    display: flex;
+    gap: 15px;
+}
+
+.botones-calculadora button {
+    background-color: #353535;
+    color: white;
+    border: 1px solid #555555;
+    border-radius: 15px;
+    padding: 15px 30px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* Extra: Información de la operación */
+#operacion-info {
     color: #b8b8b8;
-    font-size: 18px;
-    line-height: 1.6;
-    margin: 0;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
 }
 
-.introduccion-portafolio {
-    margin-bottom: 30px;
-}
+/* Calculadora - Comportamiento */
+@media (max-width: 800px) {
 
-
-/* Portafolio - Comportamiento */
-@media (max-width: 800px) { /* Quiero que cuando reduzca la pestaña el texto se coloque */
-    .paso-portafolio {
-        gap: 15px;
+    .botones-calculadora {
+        display: block;
     }
 
-    .paso-portafolio h3 {
-        font-size: 18px;
+    .botones-calculadora button {
+        margin-bottom: 10px;
     }
 
-    .paso-portafolio p,
-    .introduccion-portafolio {
-        font-size: 16px;
+    .entrada-calculadora input {
+        margin-top: 15px;
     }
 }
 
-
-/* Contacto - Contenido */
+/* Contacto - contenido */
 .contacto-contenido {
     padding: 70px 0;
 }
@@ -328,6 +246,7 @@ main {
     display: flex;
     gap: 30px;
     text-align: left;
+    justify-content: center;
 }
 
 .tarjeta-contacto {
